@@ -1,385 +1,420 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>A Bouquet For You 💙</title>
+<title>For You 💙</title>
 
-  <style>
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-      font-family: 'Poppins', sans-serif;
-    }
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Poppins,sans-serif;
+}
 
 body{
+  background:linear-gradient(to bottom,#dff4ff,#eef8ff);
   min-height:100vh;
   overflow:auto;
-  background: linear-gradient(to bottom,#dff4ff,#eef8ff);
+}
+
+/* LOCK SCREEN */
+
+.container{
+  height:100vh;
   display:flex;
   justify-content:center;
   align-items:center;
-  position:relative;
-  padding:30px 0;
+  flex-direction:column;
+  text-align:center;
 }
 
-    /* Background */
+.lock{
+  font-size:100px;
+  animation:float 3s infinite ease-in-out;
+}
 
-    .heart{
-      position:absolute;
-      color:#76a9ea;
-      opacity:0.7;
-      animation:float 5s ease-in-out infinite;
-    }
+h2{
+  color:#5c6f91;
+  margin:15px 0;
+}
 
-    .heart:nth-child(1){
-      top:12%;
-      left:10%;
-      font-size:80px;
-    }
+.password-display{
+  display:flex;
+  gap:10px;
+  margin:20px 0;
+}
 
-    .heart:nth-child(2){
-      bottom:15%;
-      left:20%;
-      font-size:70px;
-    }
+.dot{
+  width:15px;
+  height:15px;
+  border:2px solid #7da8e6;
+  border-radius:50%;
+}
 
-    .heart:nth-child(3){
-      top:20%;
-      right:15%;
-      font-size:60px;
-    }
+.dot.active{
+  background:#7da8e6;
+}
 
-    .heart:nth-child(4){
-      bottom:20%;
-      right:18%;
-      font-size:75px;
-    }
+.keypad{
+  display:grid;
+  grid-template-columns:repeat(3,70px);
+  gap:10px;
+}
 
-    .cloud{
-      position:absolute;
-      width:180px;
-      height:60px;
-      background:white;
-      border-radius:50px;
-      opacity:0.8;
-    }
+.key{
+  height:55px;
+  border:none;
+  border-radius:12px;
+  background:#f4efd7;
+  font-size:20px;
+}
 
-    .cloud::before,
-    .cloud::after{
-      content:'';
-      position:absolute;
-      background:white;
-      border-radius:50%;
-    }
+/* GIFT */
 
-    .cloud::before{
-      width:80px;
-      height:80px;
-      top:-35px;
-      left:20px;
-    }
+.gift-page{
+  display:none;
+  height:100vh;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+}
 
-    .cloud::after{
-      width:100px;
-      height:100px;
-      top:-45px;
-      right:15px;
-    }
+.gift-box{
+  font-size:120px;
+  animation:float 2s infinite ease-in-out;
+}
 
-    .cloud1{
-      top:8%;
-      left:5%;
-    }
+.gift-text{
+  color:#5c6f91;
+  margin-top:10px;
+  font-size:20px;
+}
 
-    .cloud2{
-      bottom:10%;
-      right:5%;
-    }
+/* LOVE EFFECT */
 
-    .flower{
-      position:absolute;
-      font-size:35px;
-      animation:float 4s ease-in-out infinite;
-    }
+.love-effect{
+  position:fixed;
+  inset:0;
+  overflow:hidden;
+  display:none;
+  z-index:999;
+}
 
-    .f1{
-      top:5%;
-      left:35%;
-    }
+.love{
+  position:absolute;
+  animation:pop 2s linear forwards;
+}
 
-    .f2{
-      top:15%;
-      right:30%;
-    }
+/* PHOTO PAGE */
 
-    .f3{
-      bottom:8%;
-      left:45%;
-    }
+.photo-page{
+  display:none;
+  padding:30px;
+  text-align:center;
+}
 
-    .f4{
-      bottom:20%;
-      right:8%;
-    }
+.photo-page h1{
+  color:#5c6f91;
+  margin-bottom:25px;
+}
 
-    /* Main */
+.photos{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:20px;
+}
 
-    .container{
-      text-align:center;
-      z-index:5;
-    }
+.photos img{
+  width:280px;
+  border-radius:20px;
+  box-shadow:0 5px 15px rgba(0,0,0,0.15);
+}
 
-    .lock{
-      font-size:95px;
-      animation:float 3s ease-in-out infinite;
-    }
+/* LETTER */
 
-    h2{
-      margin-top:10px;
-      color:#5d6f91;
-      font-weight:500;
-      margin-bottom:20px;
-      line-height:1.4;
-    }
+.letter-box{
+  margin-top:40px;
+  font-size:80px;
+}
 
-    .password-display{
-      display:flex;
-      justify-content:center;
-      gap:12px;
-      margin-bottom:25px;
-    }
+.letter-box p{
+  font-size:20px;
+  color:#5c6f91;
+}
 
-    .dot{
-      width:15px;
-      height:15px;
-      border:2px solid #7da8e6;
-      border-radius:50%;
-      background:transparent;
-    }
+.letter-page{
+  position:fixed;
+  inset:0;
+  background:#eef8ff;
+  display:none;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+  overflow:auto;
+}
 
-    .dot.active{
-      background:#7da8e6;
-    }
+.letter{
+  background:white;
+  padding:30px;
+  border-radius:25px;
+  max-width:600px;
+  color:#5c6f91;
+  line-height:1.8;
+  box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
 
-    .keypad{
-      display:grid;
-      grid-template-columns:repeat(3,70px);
-      gap:12px;
-      justify-content:center;
-    }
+.letter h1{
+  text-align:center;
+  margin-bottom:20px;
+}
 
-    .key{
-      height:55px;
-      border:none;
-      border-radius:12px;
-      background:#f4efd7;
-      font-size:20px;
-      cursor:pointer;
-      transition:0.2s;
-      box-shadow:0 4px 8px rgba(0,0,0,0.1);
-    }
+@keyframes float{
+  0%{
+    transform:translateY(0);
+  }
+  50%{
+    transform:translateY(-10px);
+  }
+  100%{
+    transform:translateY(0);
+  }
+}
 
-    .key:hover{
-      transform:scale(1.05);
-    }
+@keyframes pop{
+  0%{
+    transform:scale(0);
+    opacity:1;
+  }
+  100%{
+    transform:scale(1.5);
+    opacity:0;
+  }
+}
 
-    /* Love page */
-
-    .love-page{
-      position:absolute;
-      inset:0;
-      background:linear-gradient(to bottom,#cfe9ff,#f4fbff);
-      display:none;
-      justify-content:center;
-      align-items:center;
-      flex-direction:column;
-      text-align:center;
-      padding:30px;
-      animation:fade 1s ease;
-    }
-
-    .love-page h1{
-      color:#5c6f91;
-      margin-bottom:20px;
-      font-size:40px;
-    }
-
-    .love-page p{
-      max-width:600px;
-      color:#5c6f91;
-      line-height:1.8;
-      font-size:18px;
-    }
-
-    .bouquet{
-      font-size:100px;
-      margin-bottom:20px;
-      animation:float 3s infinite ease-in-out;
-    }
-
-    @keyframes float{
-      0%{
-        transform:translateY(0px);
-      }
-      50%{
-        transform:translateY(-10px);
-      }
-      100%{
-        transform:translateY(0px);
-      }
-    }
-
-    @keyframes fade{
-      from{
-        opacity:0;
-      }
-      to{
-        opacity:1;
-      }
-    }
-  </style>
+</style>
 </head>
 
 <body>
 
-  <!-- Background -->
-  <div class="heart">💙</div>
-  <div class="heart">💙</div>
-  <div class="heart">💙</div>
-  <div class="heart">💙</div>
+<!-- LOCK -->
 
-  <div class="cloud cloud1"></div>
-  <div class="cloud cloud2"></div>
+<div class="container" id="lockScreen">
 
-  <div class="flower f1">🌸</div>
-  <div class="flower f2">🌷</div>
-  <div class="flower f3">🌸</div>
-  <div class="flower f4">🌷</div>
+<div class="lock">🔐</div>
 
-  <!-- Lock Screen -->
-  <div class="container" id="lockScreen">
+<h2>
+Enter Password<br>
+For Love
+</h2>
 
-    <div class="lock">🔐</div>
+<div class="password-display">
+<div class="dot"></div>
+<div class="dot"></div>
+<div class="dot"></div>
+<div class="dot"></div>
+</div>
 
-    <h2>
-      Enter Password<br>
-      For Love
-    </h2>
+<div class="keypad">
 
-    <div class="password-display">
-      <div class="dot"></div>
-      <div class="dot"></div>
-      <div class="dot"></div>
-      <div class="dot"></div>
-    </div>
+<button class="key" onclick="press(1)">1</button>
+<button class="key" onclick="press(2)">2</button>
+<button class="key" onclick="press(3)">3</button>
 
-    <div class="keypad">
-      <button class="key" onclick="press(1)">1</button>
-      <button class="key" onclick="press(2)">2</button>
-      <button class="key" onclick="press(3)">3</button>
+<button class="key" onclick="press(4)">4</button>
+<button class="key" onclick="press(5)">5</button>
+<button class="key" onclick="press(6)">6</button>
 
-      <button class="key" onclick="press(4)">4</button>
-      <button class="key" onclick="press(5)">5</button>
-      <button class="key" onclick="press(6)">6</button>
+<button class="key" onclick="press(7)">7</button>
+<button class="key" onclick="press(8)">8</button>
+<button class="key" onclick="press(9)">9</button>
 
-      <button class="key" onclick="press(7)">7</button>
-      <button class="key" onclick="press(8)">8</button>
-      <button class="key" onclick="press(9)">9</button>
+<button class="key" onclick="press(0)">0</button>
+<button class="key" onclick="removeNumber()">⌫</button>
 
-      <button class="key" onclick="press(0)">0</button>
-      <button class="key" onclick="removeNumber()">⌫</button>
-    </div>
+</div>
+</div>
 
-  </div>
+<!-- GIFT -->
 
-  <!-- Love Page -->
-  <div class="love-page" id="lovePage">
+<div class="gift-page" id="giftPage">
 
-    <div class="bouquet">💐</div>
+<div class="gift-box" onclick="openGift()">
+🎁
+</div>
 
-    <h1>For You 💙</h1>
-
-    <p>
-  Selamat Ulang Tahun sayangg akuu cintaa akuuu❤️❤️❤️
-  <br><br>
-
-  semoga di umur ayangg yg baru ini ayangg makin bahagia,
-  sehat selalu, panjang umur, semoga hal-hal baik selalu
-  menyertai mu, semogaa jalan ayangg untuk masa depan
-  dipermudahh, dan semua yang ayangg usahain satu-satu
-  bisa tercapaiii, aamiinn.
-  <br><br>
-
-  makasii yaa ayangg udah bertahan sejauh inii,
-  udah jadi rumah paling nyaman dan jadii seseorang yg
-  selalu bikin aku merasa disayangg🥹❤️
-  <br><br>
-
-  dan aku harap, seberapa capenya dunia ke ayangg nanti,
-  ayangg tetap punya alasan buat senyum dan tetap kuat
-  jalaninnyaa❤️
-  <br><br>
-
-  sekalii lagii selamatt ulang tahun ayangg❤️✨
-  <br><br>
-
-  i lovee youuu❤️❤️❤️
+<p class="gift-text">
+click the gift 💙
 </p>
 
-  </div>
+</div>
 
-  <script>
+<!-- LOVE EFFECT -->
 
-    let password = "";
-    let correctPassword = "2605";
+<div class="love-effect" id="loveEffect"></div>
 
-    const dots = document.querySelectorAll(".dot");
+<!-- PHOTO PAGE -->
 
-    function updateDots(){
-      dots.forEach((dot,index)=>{
-        if(index < password.length){
-          dot.classList.add("active");
-        }else{
-          dot.classList.remove("active");
-        }
-      });
-    }
+<div class="photo-page" id="photoPage">
 
-    function press(num){
+<h1>our memories 💙</h1>
 
-      if(password.length < 4){
-        password += num;
-      }
+<div class="photos">
 
-      updateDots();
+<img src="https://i.pinimg.com/736x/8d/67/e6/8d67e6070e1d8bb1df52a2f8d0c5f7c7.jpg">
 
-      if(password.length === 4){
+<img src="https://i.pinimg.com/736x/8f/5f/89/8f5f89aaf5c5c80f6e6f7a52c3d62444.jpg">
 
-        if(password === correctPassword){
+<img src="https://i.pinimg.com/736x/c2/9e/e3/c29ee3b9c06b8d318f44c92a4b9cbdb4.jpg">
 
-          document.getElementById("lockScreen").style.display = "none";
+</div>
 
-          document.getElementById("lovePage").style.display = "flex";
+<div class="letter-box" onclick="openLetter()">
+💌
+<p>open letter</p>
+</div>
 
-        }else{
+</div>
 
-          alert("wrong password 💔");
+<!-- LETTER -->
 
-          password = "";
-          updateDots();
-        }
-      }
-    }
+<div class="letter-page" id="letterPage">
 
-    function removeNumber(){
-      password = password.slice(0,-1);
-      updateDots();
-    }
+<div class="letter">
 
-  </script>
+<h1>For You 💙</h1>
+
+<p>
+
+Selamat Ulang Tahun sayangg akuu cintaa akuuu❤️❤️❤️
+<br><br>
+
+semoga di umur ayangg yg baru ini ayangg makin bahagia,
+sehat selalu, panjang umur, semoga hal-hal baik selalu
+menyertai mu, semogaa jalan ayangg untuk masa depan
+dipermudahh, dan semua yang ayangg usahain satu-satu
+bisa tercapaiii, aamiinn.
+<br><br>
+
+makasii yaa ayangg udah bertahan sejauh inii,
+udah jadi rumah paling nyaman dan jadii seseorang yg
+selalu bikin aku merasa disayangg🥹❤️
+<br><br>
+
+dan aku harap, seberapa capenya dunia ke ayangg nanti,
+ayangg tetap punya alasan buat senyum dan tetap kuat
+jalaninnyaa❤️
+<br><br>
+
+sekalii lagii selamatt ulang tahun ayangg❤️✨
+<br><br>
+
+i lovee youuu❤️❤️❤️
+
+</p>
+
+</div>
+</div>
+
+<script>
+
+let password = "";
+let correctPassword = "2605";
+
+const dots = document.querySelectorAll(".dot");
+
+function updateDots(){
+
+dots.forEach((dot,index)=>{
+
+if(index < password.length){
+dot.classList.add("active");
+}else{
+dot.classList.remove("active");
+}
+
+});
+
+}
+
+function press(num){
+
+if(password.length < 4){
+password += num;
+}
+
+updateDots();
+
+if(password.length === 4){
+
+if(password === correctPassword){
+
+document.getElementById("lockScreen").style.display = "none";
+document.getElementById("giftPage").style.display = "flex";
+
+}else{
+
+alert("wrong password 💔");
+password = "";
+updateDots();
+
+}
+
+}
+
+}
+
+function removeNumber(){
+
+password = password.slice(0,-1);
+updateDots();
+
+}
+
+function openGift(){
+
+let effect = document.getElementById("loveEffect");
+
+effect.style.display = "block";
+
+for(let i=0;i<120;i++){
+
+let heart = document.createElement("div");
+
+heart.className = "love";
+heart.innerHTML = "💙";
+
+heart.style.left = Math.random()*100 + "vw";
+heart.style.top = Math.random()*100 + "vh";
+heart.style.fontSize = Math.random()*40 + 20 + "px";
+
+effect.appendChild(heart);
+
+}
+
+setTimeout(()=>{
+
+effect.style.display = "none";
+
+document.getElementById("giftPage").style.display = "none";
+
+document.getElementById("photoPage").style.display = "block";
+
+},2000);
+
+}
+
+function openLetter(){
+
+document.getElementById("letterPage").style.display = "flex";
+
+}
+
+</script>
 
 </body>
 </html>
