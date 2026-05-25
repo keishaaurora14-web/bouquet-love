@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>A Bouquet For You 💙</title>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body{
+      overflow:hidden;
+      height:100vh;
+      background: linear-gradient(to bottom,#dff4ff,#eef8ff);
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      position:relative;
+    }
+
+    /* Background */
+
+    .heart{
+      position:absolute;
+      color:#76a9ea;
+      opacity:0.7;
+      animation:float 5s ease-in-out infinite;
+    }
+
+    .heart:nth-child(1){
+      top:12%;
+      left:10%;
+      font-size:80px;
+    }
+
+    .heart:nth-child(2){
+      bottom:15%;
+      left:20%;
+      font-size:70px;
+    }
+
+    .heart:nth-child(3){
+      top:20%;
+      right:15%;
+      font-size:60px;
+    }
+
+    .heart:nth-child(4){
+      bottom:20%;
+      right:18%;
+      font-size:75px;
+    }
+
+    .cloud{
+      position:absolute;
+      width:180px;
+      height:60px;
+      background:white;
+      border-radius:50px;
+      opacity:0.8;
+    }
+
+    .cloud::before,
+    .cloud::after{
+      content:'';
+      position:absolute;
+      background:white;
+      border-radius:50%;
+    }
+
+    .cloud::before{
+      width:80px;
+      height:80px;
+      top:-35px;
+      left:20px;
+    }
+
+    .cloud::after{
+      width:100px;
+      height:100px;
+      top:-45px;
+      right:15px;
+    }
+
+    .cloud1{
+      top:8%;
+      left:5%;
+    }
+
+    .cloud2{
+      bottom:10%;
+      right:5%;
+    }
+
+    .flower{
+      position:absolute;
+      font-size:35px;
+      animation:float 4s ease-in-out infinite;
+    }
+
+    .f1{
+      top:5%;
+      left:35%;
+    }
+
+    .f2{
+      top:15%;
+      right:30%;
+    }
+
+    .f3{
+      bottom:8%;
+      left:45%;
+    }
+
+    .f4{
+      bottom:20%;
+      right:8%;
+    }
+
+    /* Main */
+
+    .container{
+      text-align:center;
+      z-index:5;
+    }
+
+    .lock{
+      font-size:95px;
+      animation:float 3s ease-in-out infinite;
+    }
+
+    h2{
+      margin-top:10px;
+      color:#5d6f91;
+      font-weight:500;
+      margin-bottom:20px;
+      line-height:1.4;
+    }
+
+    .password-display{
+      display:flex;
+      justify-content:center;
+      gap:12px;
+      margin-bottom:25px;
+    }
+
+    .dot{
+      width:15px;
+      height:15px;
+      border:2px solid #7da8e6;
+      border-radius:50%;
+      background:transparent;
+    }
+
+    .dot.active{
+      background:#7da8e6;
+    }
+
+    .keypad{
+      display:grid;
+      grid-template-columns:repeat(3,70px);
+      gap:12px;
+      justify-content:center;
+    }
+
+    .key{
+      height:55px;
+      border:none;
+      border-radius:12px;
+      background:#f4efd7;
+      font-size:20px;
+      cursor:pointer;
+      transition:0.2s;
+      box-shadow:0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .key:hover{
+      transform:scale(1.05);
+    }
+
+    /* Love page */
+
+    .love-page{
+      position:absolute;
+      inset:0;
+      background:linear-gradient(to bottom,#cfe9ff,#f4fbff);
+      display:none;
+      justify-content:center;
+      align-items:center;
+      flex-direction:column;
+      text-align:center;
+      padding:30px;
+      animation:fade 1s ease;
+    }
+
+    .love-page h1{
+      color:#5c6f91;
+      margin-bottom:20px;
+      font-size:40px;
+    }
+
+    .love-page p{
+      max-width:600px;
+      color:#5c6f91;
+      line-height:1.8;
+      font-size:18px;
+    }
+
+    .bouquet{
+      font-size:100px;
+      margin-bottom:20px;
+      animation:float 3s infinite ease-in-out;
+    }
+
+    @keyframes float{
+      0%{
+        transform:translateY(0px);
+      }
+      50%{
+        transform:translateY(-10px);
+      }
+      100%{
+        transform:translateY(0px);
+      }
+    }
+
+    @keyframes fade{
+      from{
+        opacity:0;
+      }
+      to{
+        opacity:1;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Background -->
+  <div class="heart">💙</div>
+  <div class="heart">💙</div>
+  <div class="heart">💙</div>
+  <div class="heart">💙</div>
+
+  <div class="cloud cloud1"></div>
+  <div class="cloud cloud2"></div>
+
+  <div class="flower f1">🌸</div>
+  <div class="flower f2">🌷</div>
+  <div class="flower f3">🌸</div>
+  <div class="flower f4">🌷</div>
+
+  <!-- Lock Screen -->
+  <div class="container" id="lockScreen">
+
+    <div class="lock">🔐</div>
+
+    <h2>
+      Enter Password<br>
+      For Love
+    </h2>
+
+    <div class="password-display">
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
+
+    <div class="keypad">
+      <button class="key" onclick="press(1)">1</button>
+      <button class="key" onclick="press(2)">2</button>
+      <button class="key" onclick="press(3)">3</button>
+
+      <button class="key" onclick="press(4)">4</button>
+      <button class="key" onclick="press(5)">5</button>
+      <button class="key" onclick="press(6)">6</button>
+
+      <button class="key" onclick="press(7)">7</button>
+      <button class="key" onclick="press(8)">8</button>
+      <button class="key" onclick="press(9)">9</button>
+
+      <button class="key" onclick="press(0)">0</button>
+      <button class="key" onclick="removeNumber()">⌫</button>
+    </div>
+
+  </div>
+
+  <!-- Love Page -->
+  <div class="love-page" id="lovePage">
+
+    <div class="bouquet">💐</div>
+
+    <h1>For You 💙</h1>
+
+    <p>
+      thank you for being part of my life. <br><br>
+
+      i know sometimes life feels hard,
+      but i hope you always remember
+      that you are loved more than you know.
+      <br><br>
+
+      thank you for staying,
+      thank you for existing,
+      and thank you for making my world feel softer.
+      <br><br>
+
+      i love you always 🌷
+    </p>
+
+  </div>
+
+  <script>
+
+    let password = "";
+    let correctPassword = "2605";
+
+    const dots = document.querySelectorAll(".dot");
+
+    function updateDots(){
+      dots.forEach((dot,index)=>{
+        if(index < password.length){
+          dot.classList.add("active");
+        }else{
+          dot.classList.remove("active");
+        }
+      });
+    }
+
+    function press(num){
+
+      if(password.length < 4){
+        password += num;
+      }
+
+      updateDots();
+
+      if(password.length === 4){
+
+        if(password === correctPassword){
+
+          document.getElementById("lockScreen").style.display = "none";
+
+          document.getElementById("lovePage").style.display = "flex";
+
+        }else{
+
+          alert("wrong password 💔");
+
+          password = "";
+          updateDots();
+        }
+      }
+    }
+
+    function removeNumber(){
+      password = password.slice(0,-1);
+      updateDots();
+    }
+
+  </script>
+
+</body>
+</html>
