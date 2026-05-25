@@ -18,7 +18,7 @@
 body{
   background:linear-gradient(to bottom,#dff4ff,#eef8ff);
   min-height:100vh;
-  overflow:auto;
+  overflow:hidden;
 }
 
 /* LOCK SCREEN */
@@ -40,6 +40,7 @@ body{
 h2{
   color:#5c6f91;
   margin:15px 0;
+  line-height:1.5;
 }
 
 .password-display{
@@ -62,18 +63,19 @@ h2{
 .keypad{
   display:grid;
   grid-template-columns:repeat(3,70px);
-  gap:10px;
+  gap:12px;
 }
 
 .key{
-  height:55px;
+  height:58px;
   border:none;
-  border-radius:12px;
-  background:#f4efd7;
+  border-radius:15px;
+  background:white;
   font-size:20px;
+  box-shadow:0 5px 15px rgba(0,0,0,0.08);
 }
 
-/* GIFT */
+/* GIFT PAGE */
 
 .gift-page{
   display:none;
@@ -90,7 +92,7 @@ h2{
 
 .gift-text{
   color:#5c6f91;
-  margin-top:10px;
+  margin-top:15px;
   font-size:20px;
 }
 
@@ -111,7 +113,7 @@ h2{
 
 /* LETTER PREVIEW */
 
-.photo-page{
+.preview-page{
   display:none;
   height:100vh;
   justify-content:center;
@@ -119,58 +121,71 @@ h2{
   padding:20px;
 }
 
-.letter-preview{
-  background:white;
-  padding:40px 30px;
-  border-radius:30px;
+.preview-card{
+  background:rgba(255,255,255,0.7);
+  backdrop-filter:blur(10px);
+  padding:45px 35px;
+  border-radius:35px;
   text-align:center;
-  box-shadow:0 10px 25px rgba(0,0,0,0.1);
+  box-shadow:0 10px 30px rgba(0,0,0,0.1);
   animation:float 3s infinite ease-in-out;
 }
 
 .mail{
-  font-size:90px;
-  margin-bottom:15px;
+  font-size:95px;
+  margin-bottom:20px;
 }
 
-.letter-preview h1{
+.preview-card h1{
   color:#5c6f91;
   margin-bottom:10px;
+  font-size:32px;
 }
 
-.letter-preview p{
+.preview-card p{
   color:#7b8ba7;
   font-size:18px;
 }
 
-/* LETTER */
+/* LETTER PAGE */
 
 .letter-page{
   position:fixed;
   inset:0;
-  background:#eef8ff;
+  background:linear-gradient(to bottom,#dff4ff,#eef8ff);
   display:none;
   justify-content:center;
   align-items:center;
-  padding:20px;
   overflow:auto;
+  padding:25px;
 }
 
 .letter{
-  background:white;
-  padding:35px;
-  border-radius:30px;
-  max-width:600px;
+  background:rgba(255,255,255,0.75);
+  backdrop-filter:blur(12px);
+  border:1px solid rgba(255,255,255,0.4);
+  padding:40px 30px;
+  border-radius:35px;
+  max-width:650px;
   color:#5c6f91;
-  line-height:1.9;
-  box-shadow:0 10px 25px rgba(0,0,0,0.1);
+  line-height:2;
+  box-shadow:0 10px 35px rgba(0,0,0,0.08);
   margin:30px 0;
+  position:relative;
+}
+
+.letter::before{
+  content:"💙";
+  position:absolute;
+  top:-18px;
+  right:20px;
+  font-size:35px;
 }
 
 .letter h1{
   text-align:center;
-  margin-bottom:25px;
-  font-size:35px;
+  margin-bottom:30px;
+  font-size:38px;
 }
 
 .letter p{
@@ -197,7 +212,7 @@ h2{
     opacity:1;
   }
   100%{
-    transform:scale(1.5);
+    transform:scale(1.8);
     opacity:0;
   }
 }
@@ -207,7 +222,7 @@ h2{
 
 <body>
 
-<!-- LOCK -->
+<!-- PASSWORD -->
 
 <div class="container" id="lockScreen">
 
@@ -265,16 +280,16 @@ click the gift 💙
 
 <!-- LETTER PREVIEW -->
 
-<div class="photo-page" id="photoPage">
+<div class="preview-page" id="previewPage">
 
-<div class="letter-preview" onclick="openLetter()">
+<div class="preview-card" onclick="openLetter()">
 
 <div class="mail">💌</div>
 
 <h1>open your letter</h1>
 
 <p>
-i wrote something for you 💙
+i wrote something special for you 💙
 </p>
 
 </div>
@@ -287,7 +302,7 @@ i wrote something for you 💙
 
 <div class="letter">
 
-<h1>For You 💙</h1>
+<h1>Happy Birthday 💙</h1>
 
 <p>
 
@@ -319,6 +334,7 @@ i lovee youuu❤️❤️❤️
 </p>
 
 </div>
+
 </div>
 
 <script>
@@ -360,7 +376,9 @@ document.getElementById("giftPage").style.display = "flex";
 }else{
 
 alert("wrong password 💔");
+
 password = "";
+
 updateDots();
 
 }
@@ -372,6 +390,7 @@ updateDots();
 function removeNumber(){
 
 password = password.slice(0,-1);
+
 updateDots();
 
 }
@@ -382,16 +401,19 @@ let effect = document.getElementById("loveEffect");
 
 effect.style.display = "block";
 
-for(let i=0;i<120;i++){
+for(let i=0;i<140;i++){
 
 let heart = document.createElement("div");
 
 heart.className = "love";
+
 heart.innerHTML = "💙";
 
 heart.style.left = Math.random()*100 + "vw";
+
 heart.style.top = Math.random()*100 + "vh";
-heart.style.fontSize = Math.random()*40 + 20 + "px";
+
+heart.style.fontSize = Math.random()*45 + 20 + "px";
 
 effect.appendChild(heart);
 
@@ -403,7 +425,7 @@ effect.style.display = "none";
 
 document.getElementById("giftPage").style.display = "none";
 
-document.getElementById("photoPage").style.display = "flex";
+document.getElementById("previewPage").style.display = "flex";
 
 },2000);
 
