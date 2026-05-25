@@ -109,43 +109,41 @@ h2{
   animation:pop 2s linear forwards;
 }
 
-/* PHOTO PAGE */
+/* LETTER PREVIEW */
 
 .photo-page{
   display:none;
-  padding:30px;
-  text-align:center;
-}
-
-.photo-page h1{
-  color:#5c6f91;
-  margin-bottom:25px;
-}
-
-.photos{
-  display:flex;
-  flex-direction:column;
+  height:100vh;
+  justify-content:center;
   align-items:center;
-  gap:20px;
+  padding:20px;
 }
 
-.photos img{
-  width:280px;
-  border-radius:20px;
-  box-shadow:0 5px 15px rgba(0,0,0,0.15);
+.letter-preview{
+  background:white;
+  padding:40px 30px;
+  border-radius:30px;
+  text-align:center;
+  box-shadow:0 10px 25px rgba(0,0,0,0.1);
+  animation:float 3s infinite ease-in-out;
+}
+
+.mail{
+  font-size:90px;
+  margin-bottom:15px;
+}
+
+.letter-preview h1{
+  color:#5c6f91;
+  margin-bottom:10px;
+}
+
+.letter-preview p{
+  color:#7b8ba7;
+  font-size:18px;
 }
 
 /* LETTER */
-
-.letter-box{
-  margin-top:40px;
-  font-size:80px;
-}
-
-.letter-box p{
-  font-size:20px;
-  color:#5c6f91;
-}
 
 .letter-page{
   position:fixed;
@@ -160,18 +158,26 @@ h2{
 
 .letter{
   background:white;
-  padding:30px;
-  border-radius:25px;
+  padding:35px;
+  border-radius:30px;
   max-width:600px;
   color:#5c6f91;
-  line-height:1.8;
-  box-shadow:0 5px 15px rgba(0,0,0,0.1);
+  line-height:1.9;
+  box-shadow:0 10px 25px rgba(0,0,0,0.1);
+  margin:30px 0;
 }
 
 .letter h1{
   text-align:center;
-  margin-bottom:20px;
+  margin-bottom:25px;
+  font-size:35px;
 }
+
+.letter p{
+  font-size:17px;
+}
+
+/* ANIMATION */
 
 @keyframes float{
   0%{
@@ -257,25 +263,20 @@ click the gift 💙
 
 <div class="love-effect" id="loveEffect"></div>
 
-<!-- PHOTO PAGE -->
+<!-- LETTER PREVIEW -->
 
 <div class="photo-page" id="photoPage">
 
-<h1>our memories 💙</h1>
+<div class="letter-preview" onclick="openLetter()">
 
-<div class="photos">
+<div class="mail">💌</div>
 
-<img src="https://i.pinimg.com/736x/8d/67/e6/8d67e6070e1d8bb1df52a2f8d0c5f7c7.jpg">
+<h1>open your letter</h1>
 
-<img src="https://i.pinimg.com/736x/8f/5f/89/8f5f89aaf5c5c80f6e6f7a52c3d62444.jpg">
+<p>
+i wrote something for you 💙
+</p>
 
-<img src="https://i.pinimg.com/736x/c2/9e/e3/c29ee3b9c06b8d318f44c92a4b9cbdb4.jpg">
-
-</div>
-
-<div class="letter-box" onclick="openLetter()">
-💌
-<p>open letter</p>
 </div>
 
 </div>
@@ -402,7 +403,7 @@ effect.style.display = "none";
 
 document.getElementById("giftPage").style.display = "none";
 
-document.getElementById("photoPage").style.display = "block";
+document.getElementById("photoPage").style.display = "flex";
 
 },2000);
 
